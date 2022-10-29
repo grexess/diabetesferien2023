@@ -2,5 +2,8 @@
 import { reactive } from 'vue';
 
 export const store = reactive({
-  isAuthenticated: false,
+	filterChildren: null,
+	setFilter(v) {
+		this.filterChildren = v;
+	},
 });
