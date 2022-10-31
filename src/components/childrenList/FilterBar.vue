@@ -1,27 +1,37 @@
 <template>
-	<div class="row">
-		<div class="col-sm m-1">
+	<!-- Large-->
+	<!-- <span class="d-none d-sm-block"> -->
+	<div class="row py-2">
+		<div class="col-6">
 			<div class="input-group position-relative d-inline-flex align-items-center">
 				<input
-					v-model="filter"
+					v-model="nameFilter"
 					type="text"
 					class="form-control form-control-sm"
 					placeholder="Name"
 				/>
 				<i
-					v-if="filter.length > 0"
+					v-if="nameFilter.length > 0"
 					class="bi bi-x position-absolute"
 					style="right: 8px; cursor: pointer; z-index: 100"
-					@click="filter = ''"
+					@click="nameFilter = ''"
 				>
 				</i>
 			</div>
 		</div>
-		<div class="col-sm m-1">
+		<div class="col-6">
 			<div class="input-group position-relative d-inline-flex align-items-center">
-				<input type="text" class="form-control form-control-sm" placeholder="Diabetologe/-in" /><i
+				<input
+					v-model="doctorFilter"
+					type="text"
+					class="form-control form-control-sm"
+					placeholder="Diabetologe/-in"
+				/>
+				<i
+					v-if="doctorFilter.length > 0"
 					class="bi bi-x position-absolute"
-					style="right: 10px; cursor: pointer; z-index: 100"
+					style="right: 8px; cursor: pointer; z-index: 100"
+					@click="doctorFilter = ''"
 				>
 				</i>
 			</div>
@@ -33,9 +43,13 @@
 import { ref, watch } from 'vue';
 import { store } from '../../store';
 
-const filter = ref('');
+const nameFilter = ref('');
+const doctorFilter = ref('');
 
-watch(filter, (newFilter) => {
-	store.setFilter(newFilter);
+watch(nameFilter, (newFilter) => {
+	store.setNameFilter(newFilter);
+});
+watch(doctorFilter, (newFilter) => {
+	store.setDoctorFilter(newFilter);
 });
 </script>
